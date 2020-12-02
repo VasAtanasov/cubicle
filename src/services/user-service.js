@@ -13,11 +13,7 @@ class UserService {
   }
 
   async existsByUsername(username) {
-    const query = await this.userModel.findOne({ username: username }).exec(function (err, user) {
-      // if (err) return handleError(err);
-      return !!user;
-    });
-    return query;
+    return await this.userModel.exists({ username: username });
   }
 }
 

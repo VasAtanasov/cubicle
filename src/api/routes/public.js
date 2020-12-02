@@ -1,8 +1,10 @@
 const express = require('express');
 const config = require('config');
+const BadRequestError = require('../../error/errors');
 
 const router = express.Router();
 const userService = require('../../services/user-service');
+const c = require('config');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -22,14 +24,22 @@ module.exports = function (app) {
       return;
     }
 
-    const isUsername = await userService.existsByUsername(username);
+    userService.userModel.find({}).then(coll => coll.forEach(user =>{
+      console.log(user);
+      let a =5 ;
+    }));
 
-    
+    const isUsername = await userService
+      .existsByUsername(username)
+      .catch(() => res.render('register', { errorMessage: 'Something went wrong.', username }));
+    if (isUsername) {
+      res.render('register', { errorMessage: 'Username is taken.', username });
+    }
 
     userService
       .registerUser(username, password)
       .then(() => res.redirect('/login'))
-      .catch(() => res.render('register', { errorMessage: 'Username is taken.' }));
+      .catch(() => res.render('register', { errorMessage: 'Something went wrong.', username }));
   });
 
   router.get('/login', (req, res) => {
