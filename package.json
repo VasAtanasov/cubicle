@@ -6,7 +6,8 @@
     "main": "pathToMain",
     "scripts": {
         "dev": "set NODE_ENV=development&&nodemon ./src/server.js",
-        "prod": "set NODE_ENV=production&&nodemon ./src/server.js"
+        "prod": "set NODE_ENV=production&&nodemon ./src/server.js",
+        "seed": "node ./src/seed"
     },
     "dependencies": {
         "bcrypt": "^5.0.0",
