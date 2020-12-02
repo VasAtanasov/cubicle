@@ -1,0 +1,8 @@
+@host = http://localhost:3000
+@api = api
+
+# @api_uri = {{host}}/{{api}}
+@api_uri = {{host}}
+
+###
+HEAD {{api_uri}}/status
