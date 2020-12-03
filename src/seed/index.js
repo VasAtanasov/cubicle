@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Cube = require('../models/cube');
 const mongoose = require('mongoose');
 const config = require('config');
 const fs = require('fs');
@@ -19,6 +20,7 @@ function toTitleCase(str) {
 
 const models = {
   user: User,
+  cube: Cube,
 };
 
 async function seedDatabase(runSaveMiddleware = false) {
@@ -26,9 +28,12 @@ async function seedDatabase(runSaveMiddleware = false) {
   const seedFiles = dir.filter(f => f.endsWith('.seed.js'));
 
   for (const file of seedFiles) {
+    const fileName = file.split('.seed.js')[0];
+    const modelName = toTitleCase(fileName);
     const model = models[fileName];
 
-    if (!model) throw new Error(`Cannot find Model '${modelName}'`);
+    // if (!model) throw new Error(`Cannot find Model '${modelName}'`);
+    if (!model) continue;
     const fileContents = require(path.join(__dirname, file));
 
     runSaveMiddleware ? await model.create(fileContents) : await model.insertMany(fileContents);
