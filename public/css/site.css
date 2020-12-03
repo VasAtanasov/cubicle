@@ -105,10 +105,18 @@ button, main a.btn {
     color: white;
 }
 
+.details a.btn{
+    width: 28%;
+}
+
 button:hover {
     background-color: #0B2133;
     color: white;
     cursor: pointer;
+}
+
+a.btn:hover{
+    text-decoration: underline;
 }
 
 a {
@@ -156,8 +164,8 @@ form label {
 }
 
 input[type=text],
-input[type=password],
 input[type=number],
+input[type=password],
 select,
 textarea {
     width: 100%;
@@ -230,6 +238,22 @@ h2{
     text-align: center;
 }
 
+#notifications {
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    width: 50%;
+    padding: 0.5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background: rgb(231, 118, 118);
+    color: white;
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+
 .accessories .accessory{
     display: inline-block;
     background-color: #f3f3f2;
@@ -253,7 +277,6 @@ footer {
 
 /*Animations & Transitions
 */
-
 
 @-webkit-keyframes fadeOut {
     from {
